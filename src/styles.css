@@ -1,0 +1,147 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ExeCasa design system — "Frosted Editorial".
+ * Glass cards over a soft sky/indigo/rose gradient, Plus Jakarta Sans,
+ * ink text, and four accent colours for news, sports, jobs and alerts.
+ * All colours are oklch tokens. Never hardcode colours in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-ink: var(--ink);
+  --color-pine: var(--pine);
+  --color-blush: var(--blush);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-border: var(--glass-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+
+  --ink: oklch(0.24 0.035 271);
+  --brand: oklch(0.53 0.222 266);
+  --brand-foreground: oklch(0.99 0.002 260);
+  --pine: oklch(0.6 0.135 160);
+  --blush: oklch(0.66 0.215 13);
+
+  --background: oklch(0.97 0.018 255);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0 / 55%);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.99 0.004 255);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: oklch(1 0 0 / 60%);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.95 0.008 255);
+  --muted-foreground: oklch(0.5 0.03 268);
+  --accent: oklch(0.72 0.185 51);
+  --accent-foreground: oklch(0.99 0.002 260);
+  --destructive: var(--blush);
+  --destructive-foreground: oklch(0.99 0.002 260);
+  --border: oklch(1 0 0 / 70%);
+  --input: oklch(1 0 0 / 70%);
+  --ring: var(--brand);
+
+  --glass: oklch(1 0 0 / 55%);
+  --glass-strong: oklch(1 0 0 / 72%);
+  --glass-border: oklch(1 0 0 / 70%);
+
+  --gradient-app: linear-gradient(
+    140deg,
+    oklch(0.93 0.045 235) 0%,
+    oklch(0.96 0.025 285) 45%,
+    oklch(0.94 0.04 18) 100%
+  );
+  --shadow-glass: 0 12px 30px -12px color-mix(in oklab, var(--brand) 22%, transparent);
+  --shadow-nav: 0 -8px 30px color-mix(in oklab, var(--brand) 12%, transparent);
+
+  --chart-1: var(--brand);
+  --chart-2: var(--pine);
+  --chart-3: var(--accent);
+  --chart-4: var(--blush);
+  --chart-5: oklch(0.6 0.1 250);
+  --sidebar: oklch(0.99 0.004 255);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--brand-foreground);
+  --sidebar-accent: oklch(0.95 0.008 255);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: oklch(0.92 0.012 255);
+  --sidebar-ring: var(--brand);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background: var(--gradient-app);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@utility glass-card {
+  border: 1px solid var(--glass-border);
+  background-color: var(--glass);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-panel {
+  border: 1px solid var(--glass-border);
+  background-color: var(--glass-strong);
+  backdrop-filter: blur(20px);
+}
